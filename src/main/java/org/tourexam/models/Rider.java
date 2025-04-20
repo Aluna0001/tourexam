@@ -11,7 +11,9 @@ public class Rider {
 
     private String name;
 
-    @ManyToOne(cascade = CascadeType.ALL)
+    private double totalTime;
+
+    @ManyToOne()
     @JoinColumn(name = "teamId", referencedColumnName = "id", nullable = false)
     private Team team;
 
@@ -23,12 +25,23 @@ public class Rider {
         this.id = id;
     }
 
+    /**
+     * Nu skriver vi lige noget dokumentation her
+     */
     public String getName() {
         return name;
     }
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public double getTotalTime() {
+        return totalTime;
+    }
+
+    public void setTotalTime(double totalTime) {
+        this.totalTime = totalTime;
     }
 
     public Team getTeam() {

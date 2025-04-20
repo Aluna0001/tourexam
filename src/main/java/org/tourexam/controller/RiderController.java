@@ -21,11 +21,23 @@ public class RiderController {
         return riders;
     }
 
-    @GetMapping("/riders/team/{id}")
-    public List<Rider> getRidersByTeamId(@PathVariable int id) {
-        List<Rider> riders = riderRepository.findRidersByTeamId(id);
-        return riders;
+//    @GetMapping("/riders/team/{id}")
+//    public List<Rider> getRidersByTeamId(@PathVariable int id) {
+//        List<Rider> riders = riderRepository.findRidersByTeamId(id);
+//        return riders;
+//    }
+//
+//    @GetMapping("/riders/by-time")
+//    public List<Rider> getRidersSortedByTime() {
+//        List<Rider> riders = riderRepository.findRiderByOrderByTotalTimeAsc();
+//        return riders;
+//    }
+
+    @PostMapping("/riders")
+    public Rider createRider(@RequestBody Rider rider) {
+        return riderRepository.saveAndFlush(rider);
     }
+
 
     @PostMapping("/luna")
     public int getLuna() {

@@ -1,8 +1,10 @@
 package org.tourexam.models;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
 
 import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 public class Team {
@@ -14,7 +16,8 @@ public class Team {
     private String name;
 
     @OneToMany(mappedBy = "team", cascade = CascadeType.ALL)
-    private ArrayList<Rider> rider;
+    @JsonBackReference
+    private List<Rider> riders;
 
     public int getId() {
         return id;
@@ -32,11 +35,11 @@ public class Team {
         this.name = name;
     }
 
-    public ArrayList<Rider> getRider() {
-        return rider;
+    public List<Rider> getRiders() {
+        return riders;
     }
 
-    public void setRider(ArrayList<Rider> rider) {
-        this.rider = rider;
+    public void setRiders(List<Rider> riders) {
+        this.riders = riders;
     }
 }

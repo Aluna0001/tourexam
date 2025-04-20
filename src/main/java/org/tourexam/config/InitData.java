@@ -8,6 +8,8 @@ import org.tourexam.models.Team;
 import org.tourexam.repository.RiderRepository;
 import org.tourexam.repository.TeamRepository;
 
+import java.util.ArrayList;
+
 @Component
 public class InitData implements CommandLineRunner {
 
@@ -22,17 +24,29 @@ public class InitData implements CommandLineRunner {
         Team team = new Team();
         team.setName("Team Easy On");
 
-        Team savedTeam = teamRepository.save(team);
+        Team team10 = new Team();
+        team10.setName("Team 10");
 
-//        Rider pim = new Rider();
-//        pim.setName("Pim De Kaisergracht");
-//        pim.setTeam(savedTeam);
-//
-//        Rider bobby = new Rider();
-//        bobby.setName("Bobby Olsen");
-//        bobby.setTeam(savedTeam);
-//
-//        riderRepository.save(pim);
-//        riderRepository.save(bobby);
+        team = teamRepository.saveAndFlush(team);
+        team10 = teamRepository.saveAndFlush(team10);
+
+        Rider pim = new Rider();
+        pim.setName("Pim De Kaisergracht");
+        pim.setTotalTime(500);
+        pim.setTeam(team);
+
+        Rider bobby = new Rider();
+        bobby.setName("Bobby Olsen");
+        bobby.setTotalTime(100.49);
+        bobby.setTeam(team);
+
+        Rider localPaul = new Rider();
+        localPaul.setName("Local Paul");
+        localPaul.setTotalTime(100.50);
+        localPaul.setTeam(team10);
+
+        riderRepository.save(pim);
+        riderRepository.save(bobby);
+        riderRepository.save(localPaul);
     }
 }
