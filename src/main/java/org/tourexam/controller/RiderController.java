@@ -37,10 +37,4 @@ public class RiderController {
     public Rider createRider(@RequestBody Rider rider) {
         return riderRepository.saveAndFlush(rider);
     }
-
-
-    @PostMapping("/luna")
-    public int getLuna() {
-        return 10;
-    }
 }
